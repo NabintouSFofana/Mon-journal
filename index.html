@@ -1,0 +1,2876 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Journal de Nabie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --pink-soft: #fce7f3;
+      --pink-main: #f9a8d4;
+      --yellow-soft: #fef9c3;
+      --yellow-main: #facc15;
+      --bg-main: #fff7fb;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-soft: #f5d0fe;
+      --white: #ffffff;
+      --black: #000000;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-pill: 999px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+  /* Empêche le petit décalage en haut/bas et force une scrollbar verticale stable */
+  /*overflow-y: scroll;
+  /* Même fond que le body pour éviter de voir du blanc si ça tire un peu */
+  background: radial-gradient(circle at top left, #fce7f3 0, #fff7fb 40%, #fef9c3 85%);
+}
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #fce7f3 0, #fff7fb 40%, #fef9c3 85%);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden; /* 🔒 bloque le scroll gauche/droite */
+}
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 18px 48px;
+    }
+
+    /* Tous les anchors scrollent proprement sous le header */
+    section[id] {
+      scroll-margin-top: 110px;
+    }
+
+    /* ========= HEADER ========= */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+      position: sticky;
+      top: 16px;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      background: conic-gradient(from 160deg, #f9a8d4, #facc15, #fce7f3, #f9a8d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--black);
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 4px 18px rgba(248, 113, 113, 0.45);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.16em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .nav-links a {
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--pink-soft);
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.92;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* ========= HERO ========= */
+
+    .hero {
+      margin-top: 28px;
+      padding: 30px 24px;
+      background: linear-gradient(135deg, rgba(252, 231, 243, 0.9), rgba(254, 249, 195, 0.95));
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: 26px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.55) 0, transparent 52%),
+        radial-gradient(circle at right, rgba(248, 250, 252, 0.7) 0, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px 5px 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(244, 114, 182, 0.4);
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .hero-pill-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f9a8d4, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 13px;
+    }
+
+    .hero-pill span {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 3.1vw, 34px);
+      line-height: 1.18;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #f97316, #ec4899, #fbbf24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #f97316, #ec4899);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: linear-gradient(135deg, #111827, #020617);
+      color: var(--white);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.55);
+    }
+
+    .btn-ghost {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--text-main);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      justify-self: center;
+    }
+
+    .profile-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.25);
+      width: 260px;
+    }
+
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 30px;
+      margin-bottom: 10px;
+      background: radial-gradient(circle at 20% 20%, #f9a8d4, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar-inner {
+      width: 80px;
+      height: 80px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #fef3c7, #fee2e2);
+      border: 3px solid rgba(248, 250, 252, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+
+    .profile-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .profile-role {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .profile-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 113, 113, 0.35);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .profile-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .floating-badge {
+      position: absolute;
+      right: -10px;
+      top: -14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--black);
+      color: var(--yellow-main);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .floating-badge span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--yellow-main);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+    }
+
+    .hero-orbit::before {
+      width: 270px;
+      height: 270px;
+      top: -45px;
+      right: -45px;
+    }
+
+    .hero-orbit::after {
+      width: 210px;
+      height: 210px;
+      top: -15px;
+      right: -15px;
+    }
+
+    /* ========= MAIN GRID ========= */
+
+    .main-grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 0.95fr);
+      gap: 24px;
+    }
+
+    .highlight-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .highlight-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-md);
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(248, 187, 208, 0.7);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .highlight-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .highlight-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .highlight-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .highlight-foot {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .highlight-chip {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(253, 244, 255, 0.9);
+      font-size: 10px;
+    }
+
+    .highlight-badge {
+      position: absolute;
+      right: -14px;
+      bottom: -14px;
+      width: 70px;
+      height: 70px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 40% 30%, #facc15, #f97316);
+      opacity: 0.18;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .post-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-md);
+      padding: 12px 12px 14px;
+      border: 1px solid rgba(251, 207, 232, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+
+    .post-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .post-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .post-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .post-excerpt {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      margin-top: 4px;
+      color: var(--text-muted);
+    }
+
+    .post-meta span.dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--text-muted);
+      display: inline-block;
+      margin: 0 4px;
+    }
+
+    /* ========= SIDEBAR ========= */
+    .sidebar-links {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .sidebar-links li {
+      margin-bottom: 4px;
+    }
+
+    .sidebar-links a {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .sidebar-links a:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(252, 231, 243, 0.9);
+      padding: 14px 14px 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .mini-about {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .mini-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 20% 20%, #f97316, #ec4899);
+      padding: 3px;
+    }
+
+    .mini-avatar-inner {
+      background: #fefcfb;
+      border-radius: 14px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .mini-text h4 {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .mini-text p {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .category-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+ 
+
+.category-pill {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(254, 249, 195, 0.9);
+  border: 1px solid rgba(250, 204, 21, 0.65);
+  cursor: pointer;
+  border: 1px solid rgba(250, 204, 21, 0.65);
+}
+
+.category-pill:hover:not(:disabled) {
+  background: #facc15;
+}
+
+.category-pill:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+    .dua {
+      font-size: 12px;
+      color: var(--text-main);
+      border-left: 3px solid rgba(248, 113, 113, 0.7);
+      padding-left: 8px;
+      margin-top: 6px;
+    }
+
+    .dua-ref {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .newsletter {
+      background: linear-gradient(135deg, rgba(252, 231, 243, 0.96), rgba(254, 249, 195, 0.96));
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(251, 207, 232, 0.9);
+      padding: 16px 14px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .newsletter h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .newsletter p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .newsletter-form input {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 8px 12px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .newsletter-form input:focus {
+      border-color: #ec4899;
+      box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.35);
+    }
+
+    .newsletter-form button {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .newsletter-note {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ========= SECTIONS / PAGES ========= */
+
+    .content-section {
+      margin-top: 40px;
+      padding: 26px 22px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(251, 207, 232, 0.9);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+    }
+
+    .content-section h2 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .content-section p.lead {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .content-section p {
+      font-size: 13px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .content-section ul {
+      font-size: 13px;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .content-section ul li {
+      margin-bottom: 4px;
+    }
+
+    .section-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .section-post {
+      background: #fdfcff;
+      border-radius: 18px;
+      padding: 12px 12px 14px;
+      border: 1px solid rgba(248, 187, 208, 0.8);
+      font-size: 13px;
+    }
+
+    .section-post h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .section-post span.badge {
+      display: inline-block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .section-post p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .about-box {
+      background: #fff7fb;
+      border-radius: 18px;
+      padding: 12px 14px;
+      border: 1px dashed rgba(248, 187, 208, 0.9);
+      font-size: 13px;
+    }
+
+    .about-box h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .contact-form label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 12px;
+      outline: none;
+      resize: vertical;
+      min-height: 40px;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #ec4899;
+      box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.35);
+    }
+
+    .contact-form button {
+      margin-top: 4px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: var(--black);
+      color: var(--white);
+      justify-self: flex-start;
+    }
+
+    /* ========= FOOTER ========= */
+
+    footer {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    /* ========= RESPONSIVE ========= */
+
+    @media (max-width: 880px) {
+      header {
+        border-radius: 20px;
+      }
+
+      nav {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60px;
+        padding: 10px 16px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 18px;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.3);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.18s ease;
+        margin-inline: 8px;
+        font-size: 13px;
+      }
+
+      nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+      }
+
+      .nav-cta {
+        align-self: stretch;
+        text-align: center;
+        margin-top: 6px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 22px 18px 20px;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .hero-orbit {
+        display: none;
+      }
+
+      .profile-card {
+        width: 230px;
+      }
+
+      .main-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .highlight-strip {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .post-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding-inline: 14px;
+      }
+
+      header {
+        padding-inline: 12px;
+      }
+
+      .hero {
+        border-radius: 22px;
+      }
+
+      .brand-name {
+        font-size: 18px;
+      }
+    }
+
+/* ========= POPUP ARTICLE ========= */
+.article-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.article-modal.open {
+  display: flex;
+}
+
+.article-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.article-modal-dialog {
+  position: relative;
+  max-width: 760px;
+  width: min(95%, 760px);
+  max-height: 80vh;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 18px 20px 16px;
+  box-shadow: var(--shadow-soft);
+  overflow-y: auto;
+}
+
+.article-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #4b164c;
+}
+
+/* Le contenu garde le style .content-section, on enlève juste le cadre
+   pour éviter la carte dans la carte */
+.article-modal-body .content-section {
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Optionnel : petit ajustement d'espacement interne */
+.article-modal-body {
+  padding: 2px 0;
+}
+/* Forcer la pop-up à utiliser les mêmes tailles que les sections normales */
+.article-modal-body h2 {
+  font-size: 18px !important;        /* même que .content-section h2 */
+  line-height: 1.3;
+}
+
+.article-modal-body .lead,
+.article-modal-body p,
+.article-modal-body li {
+  font-size: 13px !important;        /* même que .content-section p / ul */
+  line-height: 1.6;
+}
+
+/* Option : réduire un peu les marges pour que ça respire mieux */
+.article-modal-body p {
+  margin-bottom: 6px;
+}
+.article-modal-body ul {
+  margin-bottom: 8px;
+}
+
+.article-modal-body h2 { font-size: 1.4rem; }
+
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="brand-badge">N</div>
+        <div class="brand-text">
+          <div class="brand-name">Journal de Nabie</div>
+          <div class="brand-tagline">Foi • Vie • Croissance</div>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">
+        ☰
+      </button>
+
+      <nav id="mainNav">
+        <div class="nav-links">
+  <a href="#home" class="active">Accueil</a>
+  <a href="#section-foi">Foi</a>
+  <a href="#section-lifestyle">Lifestyle</a>
+  <a href="#section-carriere">Carrière</a>
+  <a href="#section-mental">Santé Mentale</a>
+  <!--<a href="#section-portfolio">Portfolio</a>-->
+  <a href="#section-about">À propos</a>
+</div>
+
+        <a href="#section-contact" class="nav-cta">Me dire salam</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <div class="hero-pill">
+          <div class="hero-pill-icon">✦</div>
+          <span>Femme musulmane</span>
+        </div>
+        <h1 class="hero-title">
+          Assalamu alaykoum, moi c’est <span class="highlight">Nabie</span> Je partage mon chemin de foi, de douceur et d’ambition.
+        </h1>
+        <p class="hero-subtitle">
+          Un coin féminin, bienveillant et halal sur internet pour les femmes musulmanes qui jonglent entre dîn, projets, études, travail et soin de soi — sans se perdre.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-dot"></span>
+            Réflexions hebdomadaires & histoires du quotidien
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-dot"></span>
+            Contenus doux, sincères & alignés avec la foi
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="location.hash='#section-foi'">Commencer à lire</button>
+          <button class="btn-ghost" onclick="location.hash='#section-contact'">Rejoindre la newsletter</button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <div class="avatar-inner">🧕🏾</div>
+          </div>
+          <div class="profile-name">Nabie F.</div>
+          <div class="profile-role">Femme musulmane • Autrice • Rêveuse</div>
+          <div class="profile-tags">
+            <div class="profile-tag">Foi & introspection</div>
+            <div class="profile-tag">Vie douce</div>
+            <div class="profile-tag">Carrière & tech</div>
+          </div>
+          <p class="profile-note">
+            J’écris pour la sœur qui doute, qui essaie, qui veut avancer avec Allah au centre de sa vie.
+          </p>
+          <div class="floating-badge">
+            <span class="dot"></span> Nouveau texte chaque semaine
+          </div>
+        </div>
+        <div class="hero-orbit"></div>
+      </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+      <main>
+        <!-- Bandeau de mise en avant -->
+        <div class="highlight-strip">
+          <article class="highlight-card" onclick="location.hash='#section-foi'">
+            <div class="highlight-label">Foi</div>
+            <div class="highlight-title">Moments silencieux avec Allah</div>
+            <p class="highlight-desc">
+              Rappels, dou’as et petites réflexions pour garder un cœur vivant dans un monde bruyant.
+            </p>
+            <div class="highlight-foot">
+              <span class="highlight-chip">Voir les articles</span>
+              <span>Mis à jour récemment</span>
+            </div>
+            <div class="highlight-badge"></div>
+          </article>
+
+          <article class="highlight-card" onclick="location.hash='#section-lifestyle'">
+            <div class="highlight-label">Lifestyle</div>
+            <div class="highlight-title">Routine douce & intentionnelle</div>
+            <p class="highlight-desc">
+              Habitudes, organisation, soin du corps, des cheveux et de la maison — sans pression.
+            </p>
+            <div class="highlight-foot">
+              <span class="highlight-chip">Explorer</span>
+              <span>Nouveaux posts</span>
+            </div>
+            <div class="highlight-badge"></div>
+          </article>
+
+          <article class="highlight-card" onclick="location.hash='#section-carriere'">
+            <div class="highlight-label">Carrière & études</div>
+            <div class="highlight-title">Ambition avec baraka</div>
+            <p class="highlight-desc">
+              Avancer dans ses rêves sans sacrifier sa santé mentale ni sa relation avec Allah.
+            </p>
+            <div class="highlight-foot">
+              <span class="highlight-chip">Lire mon parcours</span>
+              <span>Vie & tech</span>
+            </div>
+            <div class="highlight-badge"></div>
+          </article>
+        </div>
+
+        <!-- Articles en vedette -->
+        <div class="section-header">
+          <h2 class="section-title">Articles à découvrir en premier</h2>
+          <p class="section-subtitle">Pour entrer doucement dans mon univers</p>
+        </div>
+
+        <div class="post-grid">
+          <article class="post-card" onclick="location.hash='#article-1'">
+            <div class="post-tag">Foi • Rappel</div>
+            <h3 class="post-title">La dou’a que je murmure quand j’ai l’impression d’être en retard dans la vie</h3>
+            <p class="post-excerpt">
+              Il y a des jours où tout le monde semble avancer plus vite que toi. Voici la dou’a qui me ramène au tawakkul, encore et encore...
+            </p>
+            <div class="post-meta">
+              <span>5 min de lecture</span>
+              <span><span class="dot"></span>Publié récemment</span>
+            </div>
+          </article>
+
+          <article class="post-card" onclick="location.hash='#article-2'">
+            <div class="post-tag">Lifestyle • Routine</div>
+            <h3 class="post-title">Mon reset du dimanche, version musulmane et sans pression</h3>
+            <p class="post-excerpt">
+              Pas de “that girl” ici — juste une manière simple de remettre de l’ordre dans ton espace, ton cœur et ta semaine.
+            </p>
+            <div class="post-meta">
+              <span>6 min de lecture</span>
+              <span><span class="dot"></span>Organisation</span>
+            </div>
+          </article>
+
+          <article class="post-card" onclick="location.hash='#article-3'">
+            <div class="post-tag">Carrière • Tech</div>
+            <h3 class="post-title">Comment j’essaie d’équilibrer code, famille et ‘ibada</h3>
+            <p class="post-excerpt">
+              Ce que je fais vraiment dans mes journées, ce qui m’a aidée, et ce que j’ai dû arrêter pour protéger mon énergie.
+            </p>
+            <div class="post-meta">
+              <span>8 min de lecture</span>
+              <span><span class="dot"></span>Études & travail</span>
+            </div>
+          </article>
+
+          <article class="post-card" onclick="location.hash='#article-4'">
+            <div class="post-tag">Cœur • Personnel</div>
+            <h3 class="post-title">Apprendre à aimer la femme que je deviens</h3>
+            <p class="post-excerpt">
+              À chaque saison de la vie, Allah dépose une sagesse. Je te partage comment j’apprends à honorer la mienne.
+            </p>
+            <div class="post-meta">
+              <span>7 min de lecture</span>
+              <span><span class="dot"></span>Histoire personnelle</span>
+            </div>
+          </article>
+        </div>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <section class="card">
+          <div class="card-header">
+            <h3 class="card-title">Un peu de moi</h3>
+            <span class="card-label">Présentation</span>
+          </div>
+          <div class="mini-about">
+            <div class="mini-avatar">
+              <div class="mini-avatar-inner">🧕🏾</div>
+            </div>
+            <div class="mini-text">
+              <h4>Nabie</h4>
+              <p>
+                Femme musulmane, entre foi, cheveux crépus, code, projets et guérison intérieure.
+              </p>
+            </div>
+          </div>
+          <p style="font-size: 12px; color: var(--text-muted);">
+            Ce blog est mon journal, mon rappel et ma lettre d’amour pour chaque sœur qui se sent “en retard” ou “pas assez”. Tu es exactement là où Allah te veut, ma belle. 💛
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h3 class="card-title">Catégories</h3>
+            <span class="card-label">Explorer</span>
+          </div>
+          <div class="category-list">
+  <!-- celles-ci font défiler vers les sections existantes -->
+  <button type="button" class="category-pill" data-target="section-foi">
+    Foi & rappels
+  </button>
+  <button type="button" class="category-pill" data-target="section-lifestyle">
+    Lifestyle & maison
+  </button>
+  <button type="button" class="category-pill" data-target="section-carriere">
+    Carrière & tech
+  </button>
+    <button type="button" class="category-pill" data-target="section-mental">
+    Santé Mentale
+  </button>
+
+  <!-- celles-ci sont prêtes pour plus tard -->
+  <button type="button" class="category-pill" disabled>
+    Cheveux crépus (bientôt)
+  </button>
+
+  <button type="button" class="category-pill" disabled>
+    Histoires perso (bientôt)
+  </button>
+</div>
+
+        </section>
+ <!--
+        <section class="card">
+  <div class="card-header">
+    <h3 class="card-title">Mes projets tech</h3>
+    <span class="card-label">Portfolio</span>
+  </div>
+ 
+  <ul class="sidebar-links">
+    <li><a href="#projet-journal-nabie">“Journal de Nabie” – ce site</a></li>
+    <li><a href="#projet-boutique-digitale">Mini boutique digitale</a></li>
+    <li><a href="#projet-dashboard-admin">Dashboard admin contenu</a></li>
+    <li><a href="#projet-java-algo">Projets en Java & algo</a></li>
+  </ul>
+  -->
+</section>
+
+
+        <section class="card">
+          <div class="card-header">
+            <h3 class="card-title">Dou’a / citation du jour</h3>
+            <span class="card-label">Cœur</span>
+          </div>
+          <p class="dua">
+            « Ô Allah, arrange mes affaires pour le bien, et ne me laisse pas à moi-même ne serait-ce que le temps d’un clin d’œil. »
+          </p>
+          <p class="dua-ref">
+            Pour chaque cœur fatigué : respire, pose ton fardeau devant Allah et avance un petit pas après l’autre. 🌙
+          </p>
+        </section>
+
+        <section class="newsletter">
+          <h3>Rejoindre ma newsletter douce</h3>
+          <p>
+            Des lettres du cœur, des rappels, des ressources pour t’aider à prendre soin de ta foi et de ta vie au quotidien.
+          </p>
+          <form class="newsletter-form">
+            <input type="text" placeholder="Ton prénom" />
+            <input type="email" placeholder="Ton adresse e-mail" />
+            <button type="submit">Je m’inscris</button>
+          </form>
+          <p class="newsletter-note">
+            Pas de spam, juste des e-mails sincères quand j’ai vraiment quelque chose à partager.
+          </p>
+        </section>
+      </aside>
+    </div>
+
+    <!-- PAGE FOI -->
+    <section class="content-section" id="section-foi">
+      <h2>Foi</h2>
+      <p class="lead">
+        Ici, je te parle de salât, de dou’a, de tawakkul, de cœur fatigué, et de la manière de rester connectée à Allah même quand la vie va trop vite.
+      </p>
+      <div class="section-posts">
+         <article class="section-post" data-article-target="article-foi-coeur-lourd">
+          <span class="badge">Rappel</span>
+          <h3>Quand ton cœur est lourd mais que ta langue n’a plus de mots</h3>
+          <p>
+            Quelques dou’as simples pour les jours où tu n’arrives plus à tout formuler, mais où tu as besoin de déposer ton cœur auprès d’Allah.
+          </p>
+        </article>
+        <article class="section-post" data-article-target="article-foi-routine-realiste">
+          <span class="badge">Ramadan & au-delà</span>
+          <h3>Construire une routine de foi réaliste, même avec un planning chargé</h3>
+          <p>
+            Comment garder des petits rituels spirituels dans ton quotidien, sans te comparer aux autres ni culpabiliser.
+          </p>
+        </article>
+        <article class="section-post" data-article-target="article-foi-timing-allah">
+          <span class="badge">Tawakkul</span>
+          <h3>Accepter que le timing d’Allah ne ressemble pas au tien</h3>
+          <p>
+            Réflexions sur les projets qui prennent du temps, les “retards” apparents et la sagesse cachée derrière chaque détour.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PAGE LIFESTYLE -->
+    <section class="content-section" id="section-lifestyle">
+      <h2>Lifestyle</h2>
+      <p class="lead">
+        Organisation, douceur, soins, cheveux crépus, maison cosy et petits plaisirs simples qui rendent la vie plus légère.
+      </p>
+      <div class="section-posts">
+         <article class="section-post" data-article-target="article-life-journee-slow">
+          <span class="badge">Routine</span>
+          <h3>Une journée “slow” idéale (et réaliste) pour une femme musulmane</h3>
+          <p>
+            Comment intégrer le dhikr, le ménage, le soin du corps, des cheveux et un peu de temps pour soi dans une journée normale.
+          </p>
+        </article>
+        <article class="section-post" data-article-target="article-life-cheveux-rituels">
+          <span class="badge">Cheveux crépus</span>
+          <h3>Mes rituels préférés pour aimer mes cheveux naturels</h3>
+          <p>
+            Soins, recettes maison, gestes simples pour transformer ce moment en acte de gratitude et de self-love halal.
+          </p>
+        </article>
+        <article class="section-post" data-article-target="article-life-cocon-maison">
+          <span class="badge">Maison & ambiance</span>
+          <h3>Créer un petit cocon chez toi, même avec un budget limité</h3>
+          <p>
+            Idées simples pour décorer, ranger et sentir ton espace plus apaisant, sans dépenser une fortune.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PAGE CARRIÈRE -->
+    <section class="content-section" id="section-carriere">
+      <h2>Carrière & études</h2>
+      <p class="lead">
+        Pour les sœurs qui veulent apprendre, coder, entreprendre ou évoluer dans leur carrière, tout en restant alignées avec leur foi.
+      </p>
+      <div class="section-posts">
+        <article class="section-post" data-article-target="article-carriere-info">
+          <span class="badge">Études</span>
+          <h3>Ce que j’aurais aimé savoir avant de me lancer en informatique</h3>
+          <p>
+            Mes doutes, mes peurs, et les petits conseils qui m’aident à continuer, même quand l’imposteur tape à la porte.
+          </p>
+        </article>
+        <article class="section-post" data-article-target="article-carriere-organisation">
+          <span class="badge">Organisation</span>
+          <h3>Gérer les cours, le travail, la maison et la foi sans s’épuiser</h3>
+          <p>
+            Une manière douce de planifier ta semaine, pour ne pas sacrifier ton sommeil ni ta prière.
+          </p>
+        </article>
+        <article class="section-post" data-article-target="article-carriere-identite">
+          <span class="badge">Ambition</span>
+          <h3>Donner le meilleur de soi au travail… sans se définir par son job</h3>
+          <p>
+            Réflexion sur l’identité, la réussite et ce que signifie vraiment “réussir” quand on croit en l’au-delà.
+          </p>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="content-section" id="section-mental">
+  <h2>Santé mentale</h2>
+  <p class="lead">
+    Ici, je parle de charge mentale, fatigue émotionnelle, guérison intérieure, équilibre entre dîn, vie perso et projets.
+    Un espace pour les cœurs fatigués qui ont besoin de douceur sans jugement.
+  </p>
+  <div class="section-posts">
+    <!-- Les articles de catégorie "Santé mentale" venant de l’admin apparaîtront ici automatiquement -->
+   <article class="section-post" data-article-target="article-sante-mentale">
+  <span class="badge">Santé mentale</span>
+  <h3>Quand la santé mentale chuchote… écouter avant qu’elle ne crie</h3>
+  <p>
+    Un texte doux pour t’aider à reconnaître les signes de fatigue mentale
+    et à prendre soin de toi sans culpabilité.
+  </p>
+</article>
+  
+</div>
+</section>
+
+    <!-- PAGE PORTFOLIO -->
+     <!--
+<section class="content-section" id="section-portfolio">
+  <h2>Portfolio & projets</h2>
+  <p class="lead">
+    En plus d’écrire ici, je suis une femme musulmane passionnée par le web design, le développement
+    full stack et mes études en génie logiciel. Voici quelques projets qui représentent mon univers :
+    foi, douceur, organisation et tech. 💻🌙
+  </p>
+
+  <div class="about-grid">
+    <div class="about-box">
+      <h3>Mon profil</h3>
+      <p>
+        Je conçois des interfaces féminines, lisibles et douces, puis je les transforme en sites web
+        modernes avec HTML, CSS, JavaScript et logique back-end.  
+        Je veux créer des espaces en ligne où une femme musulmane se sent à la fois respectée,
+        comprise et inspirée.
+      </p>
+      <ul>
+        <li>✨ Web design & intégration responsive</li>
+        <li>🧕🏾 Expérience pensée pour les femmes musulmanes</li>
+        <li>💻 Étudiante en génie logiciel (algorithmes, Java, structures de données…)</li>
+      </ul>
+    </div>
+
+    <div class="about-box">
+      <h3>Compétences techniques</h3>
+      <ul>
+        <li><strong>Front-end :</strong> HTML, CSS, design responsive, mise en page</li>
+        <li><strong>JavaScript :</strong> petites interactions, navigation fluide</li>
+        <li><strong>Organisation :</strong> structurer le contenu “parcours utilisateur”</li>
+        <li><strong>Études :</strong> bases solides en algorithmique, Java & génie logiciel</li>
+      </ul>
+      <p>
+        Mon objectif : allier <strong>esthétique, simplicité, utilité et valeurs</strong> dans chaque projet,
+        sans sacrifier ma foi ni ma santé mentale.
+      </p>
+    </div>
+  </div>
+
+  <div class="section-posts" style="margin-top:14px;">
+  <article class="section-post">
+    <span class="badge">Blog & identité</span>
+    <h3>“Journal de Nabie” – ce site</h3>
+    <p>
+      Création complète de l’identité visuelle du blog : couleurs, typographie, structure des sections,
+      cartes d’articles, sidebar, navigation sticky et pages thématiques (Foi, Lifestyle, Carrière, À propos).
+    </p>
+    <p>
+      Travail sur l’expérience d’une sœur musulmane qui arrive ici : comprendre vite l’univers, se sentir
+      accueillie et trouver facilement un article qui parle à son cœur.
+    </p>
+    <button class="btn-ghost" onclick="location.hash='#projet-journal-nabie'">
+      Voir le projet en détail
+    </button>
+  </article>
+
+  <article class="section-post">
+    <span class="badge">Web design & produits digitaux</span>
+    <h3>Mini boutique digitale pour programmes & ebooks</h3>
+    <p>
+      Design d’une mini “Stan store” à ma façon : page claire pour vendre des ebooks,
+      programmes digitaux et routines capillaires, avec formulaire de commande adapté aux
+      moyens de paiement africains (paiement manuel + instructions détaillées).
+    </p>
+    <p>
+      Objectif : faciliter la vie des clientes tout en gardant un ton doux, professionnel et transparent.
+    </p>
+    <button class="btn-ghost" onclick="location.hash='#projet-boutique-digitale'">
+      Voir le projet en détail
+    </button>
+  </article>
+
+  <article class="section-post">
+    <span class="badge">Admin & organisation</span>
+    <h3>Dashboard admin pour gérer le contenu</h3>
+    <p>
+      Création d’un espace admin (hors de ce site public) pour gérer les articles, messages reçus
+      et abonnés à la newsletter, directement depuis le navigateur grâce au localStorage.
+    </p>
+    <p>
+      Interface inspirée des vrais back-offices : cartes, tableaux, badges, compteurs
+      et sections claires pour suivre le contenu sans toucher au code.
+    </p>
+    <button class="btn-ghost" onclick="location.hash='#projet-dashboard-admin'">
+      Voir le projet en détail
+    </button>
+  </article>
+
+  <article class="section-post">
+    <span class="badge">Études & génie logiciel</span>
+    <h3>Projets académiques en Java & algorithmique</h3>
+    <p>
+      Projets réalisés dans le cadre de mes études : structures de données (listes, arbres, graphes),
+      algorithmes de parcours, simulations et petites applications console.
+    </p>
+    <p>
+      Ces projets m’aident à penser comme une développeuse : décomposer un problème, écrire un code
+      propre, tester et améliorer au fur et à mesure.
+    </p>
+    <button class="btn-ghost" onclick="location.hash='#projet-java-algo'">
+      Voir le projet en détail
+    </button>
+  </article>
+</div>
+-->
+    <!-- PAGE À PROPOS -->
+    <section class="content-section" id="section-about">
+      <h2>À propos</h2>
+      <p class="lead">
+        Si tu veux savoir qui écrit derrière l’écran, comment ce blog est né, et ce que j’espère t’offrir ici, tu es au bon endroit.
+      </p>
+      <div class="about-grid">
+        <div class="about-box">
+          <h3>Qui je suis vraiment</h3>
+          <p>
+            Une femme musulmane, un peu sensible, très rêveuse, parfois fatiguée mais toujours décidée à revenir vers Allah.
+            J’aime écrire, apprendre, créer des choses, parler de cheveux crépus, de coding, de projets et de guérison intérieure.
+          </p>
+        </div>
+        <div class="about-box">
+          <h3>Pourquoi ce blog existe</h3>
+          <p>
+            J’avais besoin d’un espace où je peux être 100% moi, sans filtre Instagram. Un endroit où on peut parler de foi, de doutes,
+            de réussite, de burnout, de cheveux, de peurs et de projets — avec honnêteté, douceur et pudeur.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE 1 -->
+    <section class="content-section" id="article-1">
+      <h2>La dou’a que je murmure quand j’ai l’impression d’être en retard dans la vie</h2>
+      <p class="lead">
+        Tu connais ces moments où tu regardes autour de toi et tu as l’impression que tout le monde “avance” sauf toi ?
+        Mariage, enfants, maison, études, carrière, argent… et toi, tu te demandes : <strong>« Qu’est-ce que je fais de ma vie ? »</strong>
+      </p>
+      <p>
+        La vérité, ma belle, c’est que le calendrier d’Allah n’a rien à voir avec celui des gens.  
+        On vit dans une époque où tout va vite, où on compare nos coulisses à la vitrine des autres. C’est normal de ressentir ça.
+      </p>
+      <p>
+        Dans ces moments-là, j’ai une dou’a qui revient toujours sur ma langue. Elle n’est pas compliquée, pas longue,
+        mais elle remet mon cœur à sa place :
+      </p>
+      <p>
+        <em>« Ô Allah, écris pour moi ce qu’il y a de meilleur pour ma dounya, ma foi et mon au-delà,  
+        et fais que je sois satisfaite de ce que Tu as choisi pour moi. »</em>
+      </p>
+      <p>
+        Avec cette dou’a, je reconnais trois choses :
+      </p>
+      <ul>
+        <li>Je ne vois pas tout, mais Allah, Lui, voit l’ensemble de ma vie.</li>
+        <li>Ce que je veux n’est pas toujours ce dont j’ai vraiment besoin.</li>
+        <li>Sa science, Sa sagesse et Son amour pour moi sont plus grands que mes plans.</li>
+      </ul>
+      <p>
+        Quand je me sens “en retard”, je fais trois petits gestes :
+      </p>
+      <ul>
+        <li>Je m’éloigne un peu des réseaux, surtout de ce qui me déclenche la comparaison.</li>
+        <li>Je prends un carnet et j’écris tout ce qu’Allah m’a déjà donné, même les petites choses.</li>
+        <li>Je fais cette dou’a en pleurant si besoin, même en chuchotant sous ma couverture.</li>
+      </ul>
+      <p>
+        Tu n’es pas en retard, tu es dans ton propre rythme avec Allah.  
+        Ce qui est écrit pour toi te trouvera, au bon moment, d’une façon que tu ne soupçonnes même pas.
+      </p>
+      <p>
+        Alors respire, ma belle. Travaille sur toi, fais des efforts, mais dépose ta peur et ta honte au pied du Très-Miséricordieux.
+      </p>
+    </section>
+
+    <section class="content-section" id="article-foi-coeur-lourd">
+  <h2>Quand ton cœur est lourd mais que ta langue n’a plus de mots</h2>
+  <p class="lead">
+    Il y a des jours où tu te sens vidée, fatiguée, comme si même les dou’as ne voulaient plus sortir.
+    Tu sais qu’Allah t’écoute, mais tu ne trouves plus les mots.
+  </p>
+
+  <p>
+    Dans ces moments-là, rappelle-toi que <strong>ton Seigneur connaît déjà ce qu’il y a dans ton cœur</strong>.
+    Le silence de ta langue ne signifie pas que tu es loin de Lui. Parfois, ton cœur parle plus fort que tes phrases.
+  </p>
+
+  <p>
+    Quand tu n’arrives plus à formuler de longues invocations, tu peux t’accrocher à quelques dou’as simples et sincères :
+  </p>
+
+  <ul>
+    <li>« Rabbana ātinā fid-dounyā ḥasana wa fil-ākhirati ḥasana wa qinā ʿadhāb an-nār. »</li>
+    <li>« Ḥasbiyallāhu wa niʿma l-wakīl. »</li>
+    <li>« Yā Muqallib al-qulūb, thabbit qalbī ʿalā dīnik. »</li>
+  </ul>
+
+  <p>
+    Tu peux aussi te contenter d’un simple : <strong>« Yā Allah, Tu sais. »</strong>  
+    C’est une dou’a à part entière, parce que tu reconnais que Lui connaît tout de toi, même ce que tu n’arrives pas à exprimer.
+  </p>
+
+  <p>
+    Pour apaiser un peu ton cœur, tu peux :
+  </p>
+
+  <ul>
+    <li>Faire des ablutions lentement, comme un petit “reset” intérieur.</li>
+    <li>Lire une courte sourate que tu aimes, en méditant seulement quelques mots.</li>
+    <li>Écrire ce qui te pèse sur une feuille, puis la terminer par : « Yā Allah, je Te confie tout ça. »</li>
+  </ul>
+
+  <p>
+    Tu n’as pas besoin d’être forte pour venir vers Allah. Tu peux venir fatiguée, confuse, en larmes.
+    L’essentiel, c’est de ne pas couper le lien, même avec une seule phrase répétée encore et encore.
+  </p>
+
+  <p>
+    Que ce texte te rappelle que tu n’es jamais vraiment seule : <strong>Allah voit tes larmes, tes soupirs, tes silences</strong>,
+    et Il sait exactement ce que tu Lui dirais si les mots venaient facilement.
+  </p>
+</section>
+
+
+<section class="content-section" id="article-foi-routine-realiste">
+  <h2>Construire une routine de foi réaliste, même avec un planning chargé</h2>
+  <p class="lead">
+    Tu n’as pas besoin d’une journée parfaite pour être proche d’Allah.
+    Ce qui compte, ce sont des habitudes simples, constantes, adaptées à ta vraie vie.
+  </p>
+
+  <p>
+    Entre les cours, le travail, la famille, les transports, il est facile de se sentir “en retard” spirituellement.
+    Pourtant, une routine de foi n’a pas besoin d’être compliquée pour être profonde.
+  </p>
+
+  <p>
+    Tu peux commencer par quelques <strong>petites ancres dans ta journée</strong> :
+  </p>
+
+  <ul>
+    <li>Au réveil : une courte dou’a, une Fatiha, quelques « Subḥānallah, Alḥamdulillah, Allāhu akbar ».</li>
+    <li>Après chaque salât obligatoire : deux ou trois minutes de dhikr, même si tu es pressée.</li>
+    <li>Dans les trajets : remplacer un peu de scroll par l’écoute d’une sourate ou d’un rappel audio.</li>
+  </ul>
+
+  <p>
+    Pour garder le lien sur la durée, fixetoi un <strong>minimum atteignable</strong> plutôt qu’un idéal impossible :
+  </p>
+
+  <ul>
+    <li>Lire quelques lignes de Coran par jour, même cinq seulement.</li>
+    <li>Donner une sadaqa par semaine, même symbolique.</li>
+    <li>Noter chaque jour au moins une gratitude dans un carnet ou dans ton téléphone.</li>
+  </ul>
+
+  <p>
+    Le week-end, si tu as un peu plus de temps, tu peux ajouter des moments bonus :
+    un café + tafsir, un rappel avec une amie, un temps de lecture plus long.
+  </p>
+
+  <p>
+    L’objectif n’est pas d’en faire beaucoup une seule fois, puis d’arrêter.  
+    L’objectif, c’est <strong>d’installer une relation régulière avec Allah</strong>, avec des gestes simples,
+    mais répétés jour après jour.
+  </p>
+
+  <p>
+    Ne te compare pas aux autres ni aux routines “parfaites” vues en ligne.
+    Ta routine à toi peut être discrète, courte, mais sincère… et très aimée d’Allah in shâ Allah.
+  </p>
+</section>
+
+
+<section class="content-section" id="article-foi-timing-allah">
+  <h2>Accepter que le timing d’Allah ne ressemble pas au tien</h2>
+  <p class="lead">
+    Tu avais prévu d’être à un certain niveau à 25 ans, 30 ans, 35 ans.
+    Mais la vie a pris un autre chemin. Et tu te demandes : « Pourquoi moi ? Pourquoi maintenant ? »
+  </p>
+
+  <p>
+    En réalité, chaque “retard” apparent peut être une <strong>protection invisible</strong>.
+    Allah voit ce que tu ne vois pas : les épreuves que tu n’aurais pas supportées,
+    les relations qui t’auraient abîmée, les portes qui t’auraient éloignée de Lui.
+  </p>
+
+  <p>
+    Le tawakkul, ce n’est pas seulement dire « Je fais confiance à Allah ».
+    C’est accepter que <strong>Son calendrier soit différent du tien</strong>, même lorsque tu ne comprends pas encore pourquoi.
+  </p>
+
+  <ul>
+    <li>Tu voulais te marier tôt, mais Il t’a laissé du temps pour guérir, apprendre, te connaître.</li>
+    <li>Tu voulais un certain job, mais Il a fermé cette porte pour t’en ouvrir une autre plus tard.</li>
+    <li>Tu voulais réussir du premier coup, mais Il t’a donné l’échec comme école de patience.</li>
+  </ul>
+
+  <p>
+    Concrètement, comment avancer avec ce tawakkul ?
+  </p>
+
+  <ul>
+    <li>Faire sincèrement les causes : revoir ton CV, postuler, apprendre, parler aux bonnes personnes.</li>
+    <li>Accepter que le résultat ne t’appartient pas : ce qui est écrit pour toi ne te manquera pas.</li>
+    <li>Passer de « Pourquoi moi ? » à « Qu’est-ce que je peux apprendre ici ? ».</li>
+  </ul>
+
+  <p>
+    Tu as le droit d’être triste, déçue, fatiguée.
+    Mais essaie de garder au fond de toi cette certitude : <strong>Allah ne t’a pas oubliée</strong>.
+    Il te prépare, Il te protège, Il t’élève d’une manière que tu ne vois pas encore.
+  </p>
+
+  <p>
+    Un jour, tu regarderas en arrière et tu comprendras pourquoi certaines choses ont pris plus de temps.
+    Et peut-être que tu diras : « Alhamdoulillah que ça ne s’est pas passé comme j’avais prévu. »
+  </p>
+</section>
+
+<section class="content-section" id="article-life-journee-slow">
+  <h2>Une journée “slow” idéale (et réaliste) pour une femme musulmane</h2>
+  <p class="lead">
+    Ce n’est pas une journée parfaite d’Instagram, mais une journée simple où tu respires,
+    tu pries à l’heure et tu t’occupes un peu de toi sans t’épuiser.
+  </p>
+
+  <p><strong>Matin : commencer avec douceur et tawakkul</strong></p>
+  <ul>
+    <li>Se lever pour fajr et rester quelques minutes en dou’a après la prière.</li>
+    <li>Boire un verre d’eau, ouvrir la fenêtre, laisser entrer la lumière.</li>
+    <li>Faire un mini-rangement de 5–10 minutes pour que l’espace respire.</li>
+  </ul>
+
+  <p><strong>Fin de matinée : gérer le nécessaire sans pression</strong></p>
+  <ul>
+    <li>Préparer un petit-déjeuner simple mais nourrissant.</li>
+    <li>Avancer un peu sur le ménage, pièce par pièce, sans vouloir tout finir.</li>
+    <li>Écouter du Coran ou un rappel audio pendant que tu ranges ou cuisines.</li>
+  </ul>
+
+  <p><strong>Après-midi : prendre soin de ton corps et de tes cheveux</strong></p>
+  <ul>
+    <li>Prévoir un moment soin (visage, cheveux crépus, hydratation du corps).</li>
+    <li>Faire ce soin avec l’intention de prendre soin de l’amanah qu’Allah t’a confiée.</li>
+    <li>Écrire quelques lignes de gratitude ou de petit bilan de la journée.</li>
+  </ul>
+
+  <p><strong>Soir : se débrancher en douceur</strong></p>
+  <ul>
+    <li>Limiter les écrans au moins 30 minutes avant de dormir.</li>
+    <li>Lire quelques pages de Coran ou d’un livre bénéfique.</li>
+    <li>Finir la journée par des dou’as pour toi, ta famille, la oumma.</li>
+  </ul>
+
+  <p>
+    Cette journée est un cadre, pas une obligation.
+    Tu peux l’adapter à ta réalité : études, travail, enfants, fatigue.
+    Même si tu ne fais qu’une partie, <strong>c’est déjà précieux</strong>.
+  </p>
+</section>
+
+<section class="content-section" id="article-life-cheveux-rituels">
+  <h2>Mes rituels préférés pour aimer mes cheveux naturels</h2>
+  <p class="lead">
+    Tes cheveux crépus ne sont pas un problème à régler, mais une belle responsabilité.
+    Avec quelques rituels simples, tu peux faire de ce moment un geste de gratitude.
+  </p>
+
+  <p>
+    Commence par changer la façon dont tu parles de tes cheveux.
+    Au lieu de « ils sont compliqués », essaie : « ils ont besoin de temps et d’attention ».
+    Ton regard sur eux influencera la façon dont tu t’en occupes.
+  </p>
+
+  <p><strong>Avant le lavage</strong></p>
+  <ul>
+    <li>Appliquer un bain d’huile léger (baobab, olive, coco…) sur les longueurs.</li>
+    <li>Diviser les cheveux en sections et démêler doucement, idéalement aux doigts.</li>
+    <li>Profiter de ce moment calme pour dire du dhikr ou une petite dou’a.</li>
+  </ul>
+
+  <p><strong>Pendant la routine</strong></p>
+  <ul>
+    <li>Utiliser un shampoing doux qui ne dessèche pas trop le cuir chevelu.</li>
+    <li>Appliquer un après-shampoing ou un masque hydratant en travaillant bien par sections.</li>
+    <li>Terminer par une hydratation (eau ou spray) puis une huile ou une crème pour sceller.</li>
+  </ul>
+
+  <p><strong>Entre les lavages</strong></p>
+  <ul>
+    <li>Hydrater légèrement les longueurs deux à trois fois par semaine.</li>
+    <li>Choisir des coiffures protectrices simples et confortables.</li>
+    <li>Dormir avec un bonnet ou un foulard en satin pour limiter la casse.</li>
+  </ul>
+
+  <p>
+    Le but n’est pas de chercher la perfection, mais d’installer une relation plus douce avec tes cheveux :
+    moins de critiques, plus de patience et de bienveillance envers toi-même.
+  </p>
+</section>
+
+<section class="content-section" id="article-life-cocon-maison">
+  <h2>Créer un petit cocon chez toi, même avec un budget limité</h2>
+  <p class="lead">
+    Tu n’as pas besoin d’un intérieur de magazine pour te sentir bien chez toi.
+    Quelques petits gestes suffisent pour créer une ambiance apaisante.
+  </p>
+
+  <p><strong>Commencer par alléger plutôt que par acheter</strong></p>
+  <p>
+    Avant de penser décoration, pense désencombrement.
+    Moins d’objets, c’est souvent moins de bruit visuel et moins de charge mentale.
+  </p>
+
+  <ul>
+    <li>Choisir une petite zone par jour : bureau, table basse, étagère…</li>
+    <li>Mettre de côté ce que tu n’utilises plus pour donner ou vendre.</li>
+    <li>Nettoyer rapidement la zone et y remettre seulement l’essentiel.</li>
+  </ul>
+
+  <p><strong>Ajouter quelques touches cosy à petit prix</strong></p>
+  <ul>
+    <li>Un plaid, quelques coussins, une petite nappe qui adoucit la pièce.</li>
+    <li>Une bougie douce ou un diffuseur avec une odeur qui te rassure.</li>
+    <li>Une lumière chaude (lampe, guirlande) pour créer une atmosphère plus intime.</li>
+  </ul>
+
+  <p><strong>Créer un coin “ibadah”</strong></p>
+  <ul>
+    <li>Prévoir un tapis propre, un Coran, un carnet de dou’a.</li>
+    <li>Garder cet endroit rangé pour que ce soit facile d’y revenir.</li>
+    <li>Associer ce coin à des moments calmes, même cinq minutes par jour.</li>
+  </ul>
+
+  <p>
+    Ton cocon n’est pas forcément grand ni parfait.
+    C’est surtout un endroit où tu peux respirer, prier et te sentir en sécurité,
+    même quand le reste de ta journée est chargé.
+  </p>
+</section>
+
+
+<section class="content-section" id="article-carriere-organisation">
+  <h2>Gérer les cours, le travail, la maison et la foi sans s’épuiser</h2>
+  <p class="lead">
+    Entre les études, le travail, la famille et tes propres besoins, tu peux vite avoir l’impression
+    d’être éparpillée. Pourtant, il est possible d’alléger un peu la charge.
+  </p>
+
+  <p><strong>1. Planifier ta semaine, pas toute ta vie</strong></p>
+  <ul>
+    <li>Commencer par noter ce qui est fixe : horaires de cours, de travail, rendez-vous, prières.</li>
+    <li>Ajouter ensuite les tâches importantes mais flexibles : révisions, ménage, repas.</li>
+    <li>Laisser volontairement des espaces “tampons” pour les imprévus.</li>
+  </ul>
+
+  <p><strong>2. Mettre la foi au centre, même simplement</strong></p>
+  <ul>
+    <li>Essayer d’organiser ta journée autour des prières quand c’est possible.</li>
+    <li>Garder un moment dédié à un rappel : lecture, audio, écriture dans un carnet.</li>
+    <li>Faire l’intention d’adoration dans le travail, les tâches ménagères, les études.</li>
+  </ul>
+
+  <p><strong>3. Respecter tes limites</strong></p>
+  <ul>
+    <li>Apprendre à dire non à ce qui te surcharge inutilement.</li>
+    <li>Protéger ton sommeil et tes temps de pause, même courts.</li>
+    <li>Accepter que certaines journées seront “minimalistes” : l’essentiel, et c’est déjà bien.</li>
+  </ul>
+
+  <p>
+    Tu n’es pas obligée de tout porter seule ni de tout réussir parfaitement.
+    Tu peux avancer pas à pas, avec tes forces et tes faiblesses,
+    en gardant la direction : <strong>faire de ton mieux pour Allah</strong>.
+  </p>
+</section>
+
+
+<section class="content-section" id="article-carriere-info">
+  <h2>Ce que j’aurais aimé savoir avant de me lancer en informatique</h2>
+  <p class="lead">
+    Si tu te demandes si l’informatique est vraiment faite pour toi, ou si tu te sens un peu perdue,
+    tu n’es clairement pas la seule.
+  </p>
+
+  <p>
+    Quand on n’a pas beaucoup de modèles féminins dans la tech, on peut rapidement se sentir
+    en décalage. On se compare, on doute de sa place, on a peur de ne pas être “assez douée”.
+  </p>
+
+  <p><strong>Ce que j’aurais aimé entendre dès le début</strong></p>
+  <ul>
+    <li>Tu as le droit de ne pas tout comprendre tout de suite.</li>
+    <li>Poser des questions “basiques” ne fait pas de toi quelqu’un de moins intelligente.</li>
+    <li>Ton rythme d’apprentissage n’est pas une course contre les autres.</li>
+  </ul>
+
+  <p>
+    L’informatique, ce n’est pas seulement des lignes de code incompréhensibles.
+    C’est aussi apprendre à <strong>résoudre des problèmes</strong>, à créer des outils utiles,
+    à construire des choses qui peuvent servir aux autres.
+  </p>
+
+  <p><strong>Quelques pistes pour avancer plus sereinement</strong></p>
+  <ul>
+    <li>Découper chaque notion en petites étapes, avec tes propres mots et exemples.</li>
+    <li>Refaire les exercices plusieurs fois pour que les gestes deviennent naturels.</li>
+    <li>Te rapprocher de personnes bienveillantes : une amie, un prof, un groupe en ligne.</li>
+    <li>Relier ton apprentissage à une intention : apprendre pour aider, pour servir, pour être utile.</li>
+  </ul>
+
+  <p>
+    Tu n’as pas besoin d’être la meilleure pour avoir ta place dans ce domaine.
+    Ta sincérité, ta rigueur, ton éthique peuvent être une vraie valeur ajoutée là où tu iras.
+  </p>
+</section>
+
+<section class="content-section" id="article-carriere-identite">
+  <h2>Donner le meilleur de soi au travail… sans se définir par son job</h2>
+  <p class="lead">
+    On te demande souvent : « Tu fais quoi dans la vie ? », comme si ta valeur se résumait à ton métier.
+    Mais en réalité, tu es bien plus que ton poste.
+  </p>
+
+  <p>
+    En tant que femme musulmane, ton identité profonde n’est pas “ingénieure”, “développeuse”,
+    “étudiante” ou “en recherche d’emploi”. <strong>Tu es avant tout servante d’Allah</strong>.
+  </p>
+
+  <p>
+    Cela ne veut pas dire qu’il faut négliger ton travail. L’islam nous encourage au sérieux
+    et à l’excellence. Mais ton job reste un moyen, pas une fin en soi.
+  </p>
+
+  <p><strong>Concrètement, comment trouver l’équilibre ?</strong></p>
+  <ul>
+    <li>Commencer ta journée par une intention claire : travailler pour ce qui est halal et utile.</li>
+    <li>Rester honnête, même quand personne ne regarde réellement ce que tu fais.</li>
+    <li>Refuser ce qui heurte ta foi, même si cela semble “bon pour ta carrière”.</li>
+  </ul>
+
+  <p>
+    Un CV ne te suivra pas dans la tombe, mais ta sincérité, ta manière de traiter les autres,
+    ton éthique au travail, oui. C’est là que se trouve la vraie réussite.
+  </p>
+
+  <p>
+    Tu as le droit d’avoir de l’ambition, de vouloir évoluer, d’aimer ton métier.
+    Tant que tu te rappelles que ta valeur ne dépend pas d’un titre,
+    mais de ton lien avec Allah et de ce que tu fais du temps qu’Il t’a donné.
+  </p>
+</section>
+
+<section class="content-section" id="article-sante-mentale">
+  <h2><strong>Quand la santé mentale chuchote… écouter avant qu’elle ne crie</strong></h2>
+
+  <p>
+    Il y a des jours où tu te réveilles et tout semble lourd.<br>
+    Pas parce qu’il s’est passé quelque chose de grave… mais parce que ton cœur,
+    ton esprit et ton corps sont fatigués.<br>
+    Tu souris, tu fais ce que tu as à faire, mais au fond, tu sais que tu n’es pas totalement bien.
+  </p>
+
+  <p>
+    Et c’est normal.<br>
+    Ça arrive aux plus fortes.<br>
+    Ça arrive aux femmes qui donnent beaucoup.<br>
+    Ça arrive aux femmes qui portent trop en silence.
+  </p>
+
+  <p>
+    Aujourd’hui, j’aimerais qu’on en parle. Sans honte. Sans pression. Sans jugement.
+  </p>
+
+  <h2><strong>1. Le poids invisible que personne ne voit</strong></h2>
+
+  <p>
+    La santé mentale, ce n’est pas seulement “être triste” ou “ne plus avoir envie”.<br>
+    C’est aussi&nbsp;:
+  </p>
+
+  <ul>
+    <li>être épuisée sans raison,</li>
+    <li>s’énerver pour de petites choses,</li>
+    <li>se sentir dépassée,</li>
+    <li>perdre l’envie de faire ce qu’on aimait,</li>
+    <li>pleurer soudainement,</li>
+    <li>avoir du mal à se concentrer,</li>
+    <li>se sentir seule même entourée.</li>
+  </ul>
+
+  <p>
+    Ce sont ces signes subtils, ces petites alertes que notre âme envoie quand elle
+    manque de douceur, de repos et d’écoute.
+  </p>
+
+  <h2><strong>2. Tu n’es pas faible. Tu n’es pas cassée.</strong></h2>
+
+  <p>
+    Dans nos cultures, on dit souvent :<br>
+    “C’est rien, sois forte”,<br>
+    “Tu dramatises”,<br>
+    “Tu dois tenir”.
+  </p>
+
+  <p>
+    Mais la vérité ?<br>
+    Être forte ne veut pas dire s’épuiser.<br>
+    Être forte, c’est savoir quand s’arrêter.<br>
+    Quand respirer.<br>
+    Quand demander de l’aide.<br>
+    Quand prendre soin de soi comme on prend soin des autres.
+  </p>
+
+  <p>
+    Tu n’es pas faible.<br>
+    Tu es humaine.<br>
+    Et ton cœur a besoin d’attention, tout comme ton corps.
+  </p>
+
+  <h2><strong>3. Comment reconnaître que ton esprit a besoin de toi ?</strong></h2>
+
+  <p>Il y a des signes qui ne trompent pas&nbsp;:</p>
+
+  <p>
+    <strong>1. Tu fais tout machinalement</strong><br>
+    Tu fonctionnes en pilote automatique. Tu avances, mais tu ne ressens plus vraiment.
+  </p>
+
+  <p>
+    <strong>2. Tu t’éloignes des autres</strong><br>
+    Pas parce que tu ne les aimes pas, mais parce que tu n’as plus d’énergie sociale.
+  </p>
+
+  <p>
+    <strong>3. Tu n’arrives plus à te réjouir</strong><br>
+    Même les bonnes nouvelles ne te font plus vibrer comme avant.
+  </p>
+
+  <p>
+    <strong>4. Tu te sens “vide” parfois</strong><br>
+    Comme si tu étais là… mais pas vraiment.
+  </p>
+
+  <p>
+    <strong>5. Ton sommeil change</strong><br>
+    Insomnies, sommeil coupé, ou envie de dormir tout le temps.
+  </p>
+
+  <p>
+    Si tu te reconnais dans au moins un de ces signes, ce n’est pas une fatalité.<br>
+    C’est juste une invitation : ton cœur réclame une pause.
+  </p>
+
+  <h2><strong>4. Ce que tu peux faire pour te sentir mieux (petit à petit)</strong></h2>
+
+  <p>
+    Pas de pression. Pas de grand programme.<br>
+    Juste de la douceur, un pas après l’autre.
+  </p>
+
+  <p>
+    <strong>1. Ralentis</strong><br>
+    Même 10 minutes par jour où tu t’arrêtes…<br>
+    Respirer. Écrire. Ne rien faire.
+  </p>
+
+  <p>
+    <strong>2. Écris ce que tu ressens</strong><br>
+    Pas pour être parfaite.<br>
+    Pas pour bien formuler.<br>
+    Juste pour vider la tête.
+  </p>
+
+  <p>
+    <strong>3. Bois de l’eau, mange un vrai repas</strong><br>
+    On sous-estime comment ces choses simples stabilisent le mental.
+  </p>
+
+  <p>
+    <strong>4. Parle à quelqu’un de confiance</strong><br>
+    Une amie, une sœur, quelqu’un qui ne te juge pas.
+  </p>
+
+  <p>
+    <strong>5. Éloigne-toi des réseaux un moment</strong><br>
+    Même quelques heures peuvent apaiser le mental.
+  </p>
+
+  <p>
+    <strong>6. Fais une chose que tu aimais</strong><br>
+    Un petit geste, même minuscule : prière, dessin, promenade.
+  </p>
+
+  <p>Chaque petite action est une victoire.</p>
+
+  <h3><strong>5. Et si personne ne t’a dit ça aujourd’hui…</strong></h3>
+
+  <p>
+    Tu mérites la paix.<br>
+    Tu mérites le repos.<br>
+    Tu mérites d’être entourée de douceur.<br>
+    Tu mérites une vie où tu ne te sacrifies pas pour exister.
+  </p>
+
+  <p>
+    Tu n’es pas seule.<br>
+    Tu n’es pas en retard.<br>
+    Tu n’es pas trop fragile.<br>
+    Tu apprends juste à prendre soin de toi.
+  </p>
+
+  <p><strong>Et c’est déjà énorme.</strong></p>
+</section>
+
+    <!-- ARTICLE 2 -->
+    <section class="content-section" id="article-2">
+      <h2>Mon reset du dimanche, version musulmane et sans pression</h2>
+      <p class="lead">
+        On voit partout des “Sunday reset” parfaits : appartement blanc, fleurs fraîches, smoothie vert, to-do list infinie…
+        Ici, on va parler d’un reset <strong>réaliste</strong>, adapté à une femme musulmane, avec foi, fatigue, et vraie vie.
+      </p>
+      <p>
+        L’objectif n’est pas d’avoir une maison Pinterest, mais de retrouver un peu de calme dans ta semaine,
+        pour te sentir plus légère et disponible pour Allah, ta famille et toi-même.
+      </p>
+      <p><strong>1. Commencer par le cœur avant la maison</strong></p>
+      <p>
+        Avant même de toucher au ménage, je prends quelques minutes seule :  
+        deux unités de prière, un peu de dhikr, ou juste un moment pour dire :
+      </p>
+      <p>
+        <em>« Ya Allah, aide-moi à remettre de l’ordre dans ma vie, à commencer par mon cœur. »</em>
+      </p>
+      <p><strong>2. Choisir 3 zones maximum</strong></p>
+      <p>
+        Au lieu d’essayer de tout nettoyer et finir épuisée, je choisis <strong>3 choses</strong> :
+      </p>
+      <ul>
+        <li>Une zone visuelle (ex : salon, lit, bureau).</li>
+        <li>Une tâche utile (ex : lessive, vaisselle en retard, poubelles).</li>
+        <li>Un geste pour moi (ex : masque cheveux, douche longue, gommage, soin du visage).</li>
+      </ul>
+      <p>
+        Le but : que lundi matin, tu te réveilles dans un espace un peu plus respirable.
+      </p>
+      <p><strong>3. Préparer la semaine avec douceur</strong></p>
+      <ul>
+        <li>Réfléchir à 2–3 repas simples pour la semaine.</li>
+        <li>Choisir quelques tenues pour éviter le stress du matin.</li>
+        <li>Prévoir tes temps de prière + un petit moment pour le Coran.</li>
+      </ul>
+      <p><strong>4. Un moment juste pour toi</strong></p>
+      <p>
+        Quand tout est “assez bien”, je m’impose une mini pause :  
+        une boisson chaude, une bougie, un carnet, un livre… Rien d’extraordinaire, mais un moment où personne ne me demande rien.
+      </p>
+      <p>
+        Ton reset n’a pas besoin d’être instagrammable pour être précieux.  
+        Tant qu’il te rapproche d’Allah, te calme un peu et t’aide à respirer : c’est déjà immense.
+      </p>
+    </section>
+
+    <!-- ARTICLE 3 -->
+    <section class="content-section" id="article-3">
+      <h2>Comment j’essaie d’équilibrer code, famille et ‘ibada</h2>
+      <p class="lead">
+        Entre cours, projets, famille, messages, réseaux, prière, fatigue… on peut vite avoir l’impression d’être éparpillée.
+        Je n’ai pas une vie parfaite, mais je te partage ce qui m’aide réellement aujourd’hui.
+      </p>
+      <p><strong>1. Accepter que tout ne sera pas “équilibré” chaque jour</strong></p>
+      <p>
+        Il y a des jours “code”, des jours “famille”, des jours “repos”, des jours “ibada intense”.
+        Au lieu de culpabiliser, j’essaie de voir l’équilibre sur la semaine, pas sur une seule journée.
+      </p>
+      <p><strong>2. Placer la prière comme des “colonnes” dans la journée</strong></p>
+      <p>
+        Je construis mon planning autour des 5 prières, et non l’inverse.  
+        Par exemple :
+      </p>
+      <ul>
+        <li>Entre fajr et dhuhr : temps pour le Coran / révision / réflexion.</li>
+        <li>Entre dhuhr et ‘asr : études, tâches importantes.</li>
+        <li>Entre maghrib et ‘isha : temps plus calme, famille, révision légère.</li>
+      </ul>
+      <p>
+        Même si je ne respecte pas tout parfaitement, ce cadre me rappelle mes priorités.
+      </p>
+      <p><strong>3. Protéger quelques plages “sacrées”</strong></p>
+      <ul>
+        <li>Un moment où je ne réponds pas aux messages (sauf urgence).</li>
+        <li>Un créneau pour coder ou étudier sans être sur les réseaux.</li>
+        <li>Un moment pour un rappel, un podcast, un cours, ou juste du dhikr en marchant.</li>
+      </ul>
+      <p>
+        Ce ne sont pas de grandes résolutions, juste des petites frontières qui me gardent en vie.
+      </p>
+      <p><strong>4. Me rappeler pourquoi je fais tout ça</strong></p>
+      <p>
+        Quand je suis épuisée, je me rappelle : apprendre, travailler, prendre soin de ma famille,
+        tout peut devenir un acte d’adoration si l’intention est pour Allah.
+      </p>
+      <p>
+        Alors quand le code me fatigue, je fais une courte pause, un dhikr, un verre d’eau,
+        et je dis intérieurement :
+      </p>
+      <p>
+        <em>« Ya Allah, facilite-moi cette science et fais-en une lumière dans ma vie, pas une cause de dureté. »</em>
+      </p>
+      <p>
+        Tu n’es pas obligée d’être parfaite. Tu as juste besoin de revenir, encore et encore, vers Celui qui t’a créée.
+      </p>
+    </section>
+
+    <!-- ARTICLE 4 -->
+    <section class="content-section" id="article-4">
+      <h2>Apprendre à aimer la femme que je deviens</h2>
+      <p class="lead">
+        On parle beaucoup d’“aimer son moi” sur les réseaux, mais on oublie que nous, femmes musulmanes, on porte aussi des peurs,
+        des regrets et des blessures qui ne se soignent pas avec une simple citation Pinterest.
+      </p>
+      <p>
+        Aimer la femme que je deviens, pour moi, ce n’est pas me trouver parfaite.  
+        C’est apprendre à me regarder avec plus de miséricorde, comme Allah m’invite à le faire avec les autres.
+      </p>
+      <p><strong>1. Honorer toutes les versions de toi</strong></p>
+      <p>
+        Il y a une version de toi qui a survécu à des choses dont tu ne parles même pas.  
+        Une qui a tenu, une qui a pleuré, une qui a souri pour ne pas inquiéter les autres.
+      </p>
+      <p>
+        Aimer la femme que tu deviens, c’est dire à ces versions-là :
+        <em>« Merci d’avoir tenu jusque-là. Maintenant, je vais essayer de faire les choses un peu plus doucement. »</em>
+      </p>
+      <p><strong>2. Arrêter de tout mesurer avec les critères des gens</strong></p>
+      <p>
+        Tu n’es pas “en retard” parce que tu n’as pas coché toutes les cases de la société.  
+        Peut-être qu’Allah te protège d’un mariage toxique, d’un job qui t’aurait détruite,
+        d’un environnement qui aurait fait baisser ta foi.
+      </p>
+      <p><strong>3. Faire la paix avec tes saisons</strong></p>
+      <p>
+        Il y aura des saisons de feu (où tu avances, tu crées, tu réussis),  
+        et des saisons de terre (où tu as juste besoin de te replanter, te reposer, cicatriser).
+      </p>
+      <p>
+        L’objectif n’est pas de briller tout le temps, mais de rester accroché à Allah dans chaque saison.
+      </p>
+      <p><strong>4. Te parler comme tu parlerais à ta meilleure amie</strong></p>
+      <p>
+        Quand tu fais une erreur, au lieu de te dire “je suis nulle”, demande-toi :
+        <em>« Qu’est-ce que je dirais à une sœur que j’aime, si c’était elle à ma place ? »</em>
+      </p>
+      <p>
+        Tu verrais que tu serais plus douce, plus patiente, plus encourageante.
+      </p>
+      <p>
+        Alors aujourd’hui, essaie juste une chose :  
+        te regarder avec un peu plus de rahma.  
+        Tu n’es pas arrivée au “résultat final”, et c’est normal : tu es en construction,
+        entre les mains du Plus Doux des Créateurs.
+      </p>
+    </section>
+
+    <!-- PROJET 1 : JOURNAL DE NABIE -->
+<!--
+<section class="content-section" id="projet-journal-nabie">
+  <h2>Projet · “Journal de Nabie” (ce site)</h2>
+  <p class="lead">
+    Un blog intime et féminin, pensé comme un vrai journal, avec une identité visuelle douce
+    et une structure claire pour guider les sœurs entre foi, vie quotidienne et carrière.
+  </p>
+
+  <p>
+    Ce projet est né d’un besoin personnel : avoir un endroit où écrire, témoigner, conseiller
+    et rassurer, sans filtre. J’ai voulu que l’expérience ressemble à une lettre d’amie plus
+    qu’à un site “institutionnel”.
+  </p>
+
+  <h3>Objectifs du projet</h3>
+  <ul>
+    <li>Créer une identité visuelle qui respire la douceur, la foi et la féminité (couleurs, typo, badges).</li>
+    <li>Organiser le contenu en grandes rubriques : Foi, Lifestyle, Carrière, À propos, Contact.</li>
+    <li>Rendre la lecture agréable sur téléphone, tablette et ordinateur (design responsive).</li>
+  </ul>
+
+  <h3>Ce que j’ai fait concrètement</h3>
+  <ul>
+    <li>Design complet dans ma tête / sur papier (structure des sections, ton, manière de parler à la lectrice).</li>
+    <li>Intégration HTML & CSS : header collant, hero avec photo/émoji, cartes d’articles, sidebar.</li>
+    <li>Mise en place d’un style cohérent : arrondis, ombres douces, badges, pill buttons, mise en forme des citations.</li>
+  </ul>
+
+  <h3>Technologies utilisées</h3>
+  <ul>
+    <li>HTML5 sémantique : sections, titres, paragraphes, listes, ancres (#article-1, #section-foi…)</li>
+    <li>CSS pur : variables de couleur, grid, flexbox, media queries pour le responsive.</li>
+    <li>Un peu de JavaScript pour la navigation mobile (menu burger).</li>
+  </ul>
+</section>
+
+// PROJET 2 : MINI BOUTIQUE DIGITALE 
+<section class="content-section" id="projet-boutique-digitale">
+  <h2>Projet · Mini boutique digitale pour programmes & ebooks</h2>
+  <p class="lead">
+    Une page de vente inspirée du concept “Stan store”, adaptée à ma réalité : produits digitaux,
+    moyens de paiement africains, et clientes qui préfèrent parfois discuter sur WhatsApp avant d’acheter.
+  </p>
+
+  <p>
+    L’idée était de vendre mes ebooks, routines capillaires, programmes et fiches PDF
+    sans dépendre d’une plateforme qui n’accepte pas les paiements locaux.
+  </p>
+
+  <h3>Objectifs du projet</h3>
+  <ul>
+    <li>Présenter chaque offre dans une carte claire : titre, description, bénéfices, prix.</li>
+    <li>Permettre à la cliente de commander via WhatsApp, Facebook ou e-mail.</li>
+    <li>Préparer une base pour connecter plus tard un vrai système de paiement automatique.</li>
+  </ul>
+
+  <h3>Ce que j’ai fait concrètement</h3>
+  <ul>
+    <li>Création d’une page dédiée avec cartes produits (image, texte, bouton d’action).</li>
+    <li>Formulaire de commande avec choix du canal de réception (e-mail, WhatsApp, Facebook).</li>
+    <li>Logique simple côté front : lorsqu’une commande est envoyée, afficher un message expliquant comment payer
+      (mobile money, transfert, etc.) et envoyer la preuve de paiement.</li>
+  </ul>
+
+  <h3>Technologies utilisées</h3>
+  <ul>
+    <li>HTML & CSS pour la mise en page façon “store” moderne.</li>
+    <li>JavaScript pour gérer les formulaires, les validations et les messages de confirmation.</li>
+  </ul>
+</section>
+
+//PROJET 3 : DASHBOARD ADMIN 
+<section class="content-section" id="projet-dashboard-admin">
+  <h2>Projet · Dashboard admin pour gérer le contenu</h2>
+  <p class="lead">
+    Un espace d’administration privé qui me permet de gérer mes articles, messages reçus
+    et abonnés newsletter sans ouvrir une base de données compliquée.
+  </p>
+
+  <p>
+    Ce projet est un “faux backend” : tout se passe dans le navigateur grâce au localStorage,
+    mais l’interface ressemble à un vrai admin (comme WordPress ou Notion simplifié).
+  </p>
+
+  <h3>Objectifs du projet</h3>
+  <ul>
+    <li>Centraliser les articles du blog (titre, catégorie, statut, contenu complet).</li>
+    <li>Conserver la trace des messages envoyés via le formulaire de contact ou les réseaux.</li>
+    <li>Construire une petite base d’abonnées newsletter avant d’utiliser un vrai outil d’e-mailing.</li>
+  </ul>
+
+  <h3>Ce que j’ai fait concrètement</h3>
+  <ul>
+    <li>Dashboard avec plusieurs sections : Vue d’ensemble, Articles, Messages, Newsletter, Réglages.</li>
+    <li>Formulaires pour créer / éditer / supprimer des articles (stockés en JSON dans le localStorage).</li>
+    <li>Tableaux récapitulatifs avec compteurs (nombre d’articles, de messages, d’abonnées).</li>
+  </ul>
+
+  <h3>Technologies utilisées</h3>
+  <ul>
+    <li>HTML & CSS pour l’interface (cartes, sidebar, topbar, badges, tableaux).</li>
+    <li>JavaScript pour :
+      <ul>
+        <li>Créer, lire, mettre à jour, supprimer des données dans <code>localStorage</code>.</li>
+        <li>Gérer la navigation entre les sections de l’admin.</li>
+        <li>Mettre à jour les compteurs et exporter les données en JSON.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+// PROJET 4 : PROJETS D’ÉTUDES EN JAVA & ALGO 
+<section class="content-section" id="projet-java-algo">
+  <h2>Projet · Projets académiques en Java & algorithmique</h2>
+  <p class="lead">
+    Des projets réalisés dans le cadre de mes études de génie logiciel : structures de données,
+    graphes, arbres, algorithmes, et bonnes pratiques de code.
+  </p>
+
+  <p>
+    C’est la partie “moins visible” mais très importante : tout ce que j’apprends en algorithmique
+    me permet de coder des fonctionnalités plus propres et plus efficaces pour mes futurs projets web.
+  </p>
+
+  <h3>Exemples de mini-projets</h3>
+  <ul>
+    <li>Implémentation de listes chaînées, piles, files et arbres binaires en Java.</li>
+    <li>Parcours de graphes (BFS, DFS) pour vérifier des propriétés (connectivité, bipartition…).</li>
+    <li>Petites applications console qui lisent des fichiers, analysent des données et affichent des statistiques.</li>
+  </ul>
+
+  <h3>Ce que j’ai appris</h3>
+  <ul>
+    <li>Découper un problème en fonctions claires et réutilisables.</li>
+    <li>Documenter mon code avec des commentaires et des noms de variables lisibles.</li>
+    <li>Tester différents cas (cas simples, cas limites, erreurs) pour éviter les bugs.</li>
+  </ul>
+
+  <h3>Technologies utilisées</h3>
+  <ul>
+    <li>Java (programmation orientée objet, exceptions, collections).</li>
+    <li>Notions de complexité (temps / mémoire) pour choisir les bonnes structures de données.</li>
+  </ul>
+</section>
+-->
+
+    <!-- PAGE CONTACT -->
+    <section class="content-section" id="section-contact">
+  <h2>Page Contact & newsletter</h2>
+  <p class="lead">
+    Tu peux m’écrire un petit message ici, ou simplement t’inscrire à ma newsletter pour recevoir mes lettres du cœur.
+  </p>
+  <div class="about-grid">
+    <div class="about-box">
+      <h3>M’écrire directement</h3>
+      <form class="contact-form" id="contact-form">
+        <div>
+          <label for="contact-name">Ton prénom</label>
+          <input id="contact-name" type="text" placeholder="Ex : Aïcha" />
+        </div>
+        <div>
+          <label for="contact-email">Ton e-mail</label>
+          <input id="contact-email" type="email" placeholder="Ex : toi@example.com" />
+        </div>
+        <div>
+          <label for="contact-message">Ton message</label>
+          <textarea id="contact-message" rows="4" placeholder="Partage-moi ce que tu veux, ma belle."></textarea>
+        </div>
+        <button type="submit">Envoyer</button>
+        <p id="contact-status" style="font-size:12px; margin-top:6px;"></p>
+      </form>
+    </div>
+    <div class="about-box">
+      <h3>Rejoindre la newsletter</h3>
+      <p>
+        Je prépare une petite liste privée pour les sœurs qui veulent recevoir des contenus plus intimes,
+        des ressources et des projets en avant-première.
+      </p>
+      <p style="font-size: 12px; margin-top: 6px;">
+        Bientôt in shâ Allah : tu pourras aussi répondre aux e-mails pour me raconter ton histoire, tes luttes et tes victoires.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- POPUP ARTICLE -->
+<div id="articleModal" class="article-modal">
+  <div id="articleModalBackdrop" class="article-modal-backdrop"></div>
+  <div class="article-modal-dialog">
+    <button id="articleModalClose" class="article-modal-close" aria-label="Fermer l’article">
+      &times;
+    </button>
+    <div id="articleModalBody" class="article-modal-body"></div>
+  </div>
+</div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© <span id="year"></span> Journal de Nabie · Tous droits réservés . Fait par MOI pour MOI · </div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/nabintous.fofana/">Instagram</a>
+        <a href="https://www.facebook.com/nabintousfofana/">Facebook</a>
+        <a href="mailto:nabintousfofana@gmail.com">E-mail</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  // ===== MENU MOBILE =====
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+      mainNav.classList.toggle("open");
+    });
+  }
+
+  // ===== CLIC SUR LES CATEGORIES (FOI, LIFESTYLE, SANTÉ MENTALE, ETC.) =====
+  document.querySelectorAll(".category-pill[data-target]").forEach((btn) => {
+    btn.style.cursor = "pointer";
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-target");
+      if (!id) return;
+      const section = document.getElementById(id);
+      if (!section) return;
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  // ===== ANNÉE DANS LE FOOTER =====
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+
+  // ===== CLÉS STORAGE (IDENTIQUES À admin.html) =====
+  const STORAGE_KEY_MESSAGES = "nb_blog_messages";
+  const STORAGE_KEY_SUBSCRIBERS = "nb_blog_subscribers";
+  const STORAGE_KEY_POSTS = "nb_blog_posts";
+
+
+  function loadArray(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      console.error("Erreur lecture storage", e);
+      return [];
+    }
+  }
+
+  function saveArray(key, arr) {
+    try {
+      localStorage.setItem(key, JSON.stringify(arr));
+    } catch (e) {
+      console.error("Erreur écriture storage", e);
+    }
+  }
+
+  // ===== FORMULAIRE CONTACT → MESSAGES DANS ADMIN =====
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nameInput = document.getElementById("contact-name");
+      const emailInput = document.getElementById("contact-email");
+      const messageInput = document.getElementById("contact-message");
+      const statusEl = document.getElementById("contact-status");
+
+      const name = nameInput ? nameInput.value.trim() : "";
+      const email = emailInput ? emailInput.value.trim() : "";
+      const content = messageInput ? messageInput.value.trim() : "";
+
+      if (!name || !content) {
+        if (statusEl) {
+          statusEl.style.color = "#b91c1c";
+          statusEl.textContent =
+            "Merci de remplir au moins ton prénom et ton message.";
+        }
+        return;
+      }
+
+      const messages = loadArray(STORAGE_KEY_MESSAGES);
+      messages.push({
+        id: Date.now().toString(),
+        name,
+        email,
+        channel: "Formulaire blog",
+        content,
+        createdAt: new Date().toISOString(),
+      });
+      saveArray(STORAGE_KEY_MESSAGES, messages);
+
+      if (statusEl) {
+        statusEl.style.color = "#16a34a";
+        statusEl.textContent =
+          "Merci pour ton message, il a bien été enregistré 💌";
+      }
+
+      contactForm.reset();
+    });
+  }
+
+  // ===== FORMULAIRE NEWSLETTER → ABONNÉES DANS ADMIN =====
+  const newsletterForm = document.querySelector(".newsletter-form");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const inputs = newsletterForm.querySelectorAll("input");
+      let name = "";
+      let email = "";
+
+      inputs.forEach((inp) => {
+        if (inp.type === "text") name = inp.value.trim();
+        if (inp.type === "email") email = inp.value.trim();
+      });
+
+      if (!email) {
+        alert("Merci d’ajouter au moins ton e-mail pour la newsletter.");
+        return;
+      }
+
+      const subs = loadArray(STORAGE_KEY_SUBSCRIBERS);
+      subs.push({
+        name,
+        email,
+        source: "Formulaire newsletter blog",
+        createdAt: new Date().toISOString(),
+      });
+      saveArray(STORAGE_KEY_SUBSCRIBERS, subs);
+
+      inputs.forEach((inp) => (inp.value = ""));
+      alert(
+        "Tu as bien été ajoutée à la liste newsletter in shâ Allah 🤍"
+      );
+    });
+  }
+
+    // ===== AFFICHER LES ARTICLES PUBLIES (DEPUIS L'ADMIN) =====
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return str.replace(/[&<>"']/g, (c) => {
+      const map = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      };
+      return map[c] || c;
+    });
+  }
+
+  function renderPublishedPosts() {
+    // On récupère les articles stockés par l'admin
+    const allPosts = loadArray(STORAGE_KEY_POSTS);
+    if (!Array.isArray(allPosts) || !allPosts.length) return;
+
+    // On garde uniquement ceux en "Publié"
+    const published = allPosts.filter(
+      (p) => p && p.status === "publie"
+    );
+
+    if (!published.length) return;
+
+        const containers = {
+      "Foi": document.querySelector("#section-foi .section-posts"),
+      "Lifestyle": document.querySelector("#section-lifestyle .section-posts"),
+      "Carrière & tech": document.querySelector("#section-carriere .section-posts"),
+      "Santé mentale": document.querySelector("#section-mental .section-posts"),
+      // plus tard on pourra ajouter :
+      // "Cheveux crépus": document.querySelector("#section-lifestyle .section-posts") ou une nouvelle section,
+      // "Histoires perso": ...
+    };
+
+
+    published.forEach((p) => {
+      const container = containers[p.category];
+      if (!container) return;
+
+      const article = document.createElement("article");
+      article.className = "section-post";
+      article.innerHTML = `
+        <span class="badge">Blog</span>
+        <h3>${escapeHtml(p.title || "")}</h3>
+        <p>${escapeHtml(p.excerpt || "")}</p>
+      `;
+
+      // 🔥 quand on clique sur un article venant de l'admin → ouvrir la pop-up avec le texte complet
+      article.style.cursor = "pointer";
+      article.addEventListener("click", () => {
+        openAdminPostModal(p);
+      });
+
+      container.appendChild(article);
+    });
+
+  }
+
+  document.addEventListener("DOMContentLoaded", renderPublishedPosts);
+
+    function formatContentToHtml(content) {
+    if (!content) return "";
+    return content
+      .split(/\n{2,}/) // paragraphe = 1 ligne vide entre deux blocs
+      .map((block) =>
+        `<p>${escapeHtml(block).replace(/\n/g, "<br>")}</p>`
+      )
+      .join("");
+  }
+
+  function openAdminPostModal(post) {
+    if (!articleModal || !articleModalBody) return;
+
+    const html = `
+      <h2>${escapeHtml(post.title || "")}</h2>
+      ${post.readtime ? `<p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">Temps de lecture : ${post.readtime} min</p>` : ""}
+      ${formatContentToHtml(post.content || "")}
+    `;
+    articleModalBody.innerHTML = html;
+    articleModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+      // ===== POPUP ARTICLES =====
+    const articleModal = document.getElementById("articleModal");
+    const articleModalBody = document.getElementById("articleModalBody");
+    const articleModalClose = document.getElementById("articleModalClose");
+    const articleModalBackdrop = document.getElementById("articleModalBackdrop");
+
+    function openArticleModal(articleId) {
+      const articleSection = document.getElementById(articleId);
+      if (!articleSection) return;
+      // On copie le contenu de la section article dans la pop-up
+      articleModalBody.innerHTML = articleSection.innerHTML;
+      articleModal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeArticleModal() {
+      articleModal.classList.remove("open");
+      articleModalBody.innerHTML = "";
+      document.body.style.overflow = "";
+    }
+
+    // Cliquer sur une carte ouvre la pop-up
+    document.querySelectorAll(".section-post[data-article-target]").forEach(card => {
+      card.style.cursor = "pointer";
+      card.addEventListener("click", () => {
+        const targetId = card.getAttribute("data-article-target");
+        openArticleModal(targetId);
+      });
+    });
+
+    // Bouton fermer + clic sur le fond + touche Échap
+    articleModalClose.addEventListener("click", closeArticleModal);
+    articleModalBackdrop.addEventListener("click", closeArticleModal);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeArticleModal();
+    });
+
+</script>
+</body>
+</html>
