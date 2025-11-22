@@ -2614,14 +2614,25 @@ body {
   </div>
 
   <script>
-  // ===== MENU MOBILE =====
-  const menuToggle = document.getElementById("menuToggle");
-  const mainNav = document.getElementById("mainNav");
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener("click", () => {
-      mainNav.classList.toggle("open");
+ // ===== MENU MOBILE =====
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+if (menuToggle && mainNav) {
+  // ouvrir / fermer quand on clique sur le bouton
+  menuToggle.addEventListener("click", () => {
+    mainNav.classList.toggle("open");
+  });
+
+  // fermer le menu quand on clique sur un lien
+  const navLinks = mainNav.querySelectorAll("a");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("open");
     });
-  }
+  });
+}
+
 
   // ===== CLIC SUR LES CATEGORIES (FOI, LIFESTYLE, SANTÉ MENTALE, ETC.) =====
   document.querySelectorAll(".category-pill[data-target]").forEach((btn) => {
