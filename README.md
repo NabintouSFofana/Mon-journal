@@ -41,14 +41,14 @@ Le site est 100 % statique, léger et responsive. Il se compose principalement d
 
 Cloner ou télécharger ce dépôt :
 
-git clone https://github.com/ton-compte/journal-de-nabie-blog.git
+git clone https://github.com/NabintouSFofana/Mon-journal/blob/main/README.md
 
 
 Ouvrir index.html dans un navigateur.
 
 La page confidentialite.html est accessible via un lien dans le footer du site ou directement par l’URL :
 
-https://ton-domaine/confidentialite.html
+https://nabintousfofana.github.io/Mon-journal/confidentialite.html
 
 
 ## 🔒 Vie privée
