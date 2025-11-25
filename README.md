@@ -33,6 +33,52 @@ Le site est 100 % statique, léger et responsive. Il se compose principalement d
 
 ---
 
+
+ ## Utilisation
+
+Cloner ou télécharger ce dépôt :
+
+git clone https://github.com/ton-compte/journal-de-nabie-blog.git
+
+
+Ouvrir index.html dans un navigateur.
+
+La page confidentialite.html est accessible via un lien dans le footer du site ou directement par l’URL :
+
+https://ton-domaine/confidentialite.html
+
+
+## 🔒 Vie privée
+
+La page confidentialite.html explique :
+
+quelles données sont collectées (prénom, e-mail via newsletter, messages de contact)
+
+comment elles sont utilisées (réponse aux messages, envoi de lettres par e-mail)
+
+l’absence de cookies publicitaires
+
+les droits de l’utilisatrice (modification, suppression, désabonnement)
+
+
+## Pistes d’amélioration
+
+Ajout de pages pour chaque article (au lieu de tout en “one-page”)
+
+Système de tags / recherche
+
+Version anglaise du blog
+
+Sitemap et SEO plus avancé
+
+
+## 💌 Contact
+
+Pour toute question ou collaboration :
+
+Nabie
+📧 nabintousfofana@gmail.com
+
 ## 📁 Structure recommandée
 
 ```bash
@@ -47,48 +93,3 @@ journal-de-nabie-blog/
     ├── illustration-hero.png
     └── ...
 
-
-🚀 Utilisation
-
-Cloner ou télécharger ce dépôt :
-
-git clone https://github.com/ton-compte/journal-de-nabie-blog.git
-
-
-Ouvrir index.html dans un navigateur.
-
-La page confidentialite.html est accessible via un lien dans le footer du site ou directement par l’URL :
-
-https://ton-domaine/confidentialite.html
-
-
-🔒 Vie privée
-
-La page confidentialite.html explique :
-
-quelles données sont collectées (prénom, e-mail via newsletter, messages de contact)
-
-comment elles sont utilisées (réponse aux messages, envoi de lettres par e-mail)
-
-l’absence de cookies publicitaires
-
-les droits de l’utilisatrice (modification, suppression, désabonnement)
-
-
-🔮 Pistes d’amélioration
-
-Ajout de pages pour chaque article (au lieu de tout en “one-page”)
-
-Système de tags / recherche
-
-Version anglaise du blog
-
-Sitemap et SEO plus avancé
-
-
-💌 Contact
-
-Pour toute question ou collaboration :
-
-Nabie
-📧 nabintousfofana@gmail.com
