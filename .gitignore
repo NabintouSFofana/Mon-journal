@@ -1,0 +1,50 @@
+# ─── OS junk ─────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+._*
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ─── Editor / IDE files ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ─── Logs and temp ───────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+*.cache
+
+# ─── Local-only drafts and experiments ───────────────────────────────
+# I sometimes test layouts in files prefixed with _draft / _scratch.
+# They stay on my machine.
+_draft*
+_scratch*
+_local*
+
+# ─── If I ever add a build step (currently none) ─────────────────────
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# ─── Secrets / personal data exports ─────────────────────────────────
+.env
+.env.local
+secrets.json
+
+# Just in case I ever export subscribers/messages locally —
+# these contain personal data and should NEVER be pushed
+subscribers-export*.json
+messages-export*.json
+articles-backup-*.json
